@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "324889962831",
+    "firebase_url": "https://revitalize-f1fe4.firebaseio.com",
+    "project_id": "revitalize-f1fe4",
+    "storage_bucket": "revitalize-f1fe4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:324889962831:android:380cbfa310da952de5fd3a",
+        "android_client_info": {
+          "package_name": "com.example.revitalize"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "324889962831-v0r02s68ige61mg37qvna3pke58mm1as.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.revitalize",
+            "certificate_hash": "704dcac89c232bb6c8bf9ef566ad2ee37dcddda9"
+          }
+        },
+        {
+          "client_id": "324889962831-dl14c96hannggfajdn3fc10f5mpo0fn3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxnSNMDv0eJLtGX6WMLHZIhD-DdQwrlis"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "324889962831-dl14c96hannggfajdn3fc10f5mpo0fn3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
