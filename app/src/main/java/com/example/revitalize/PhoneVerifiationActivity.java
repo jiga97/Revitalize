@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -34,6 +36,9 @@ public class PhoneVerifiationActivity extends AppCompatActivity {
     //firebase auth object
     private FirebaseAuth mAuth;
 
+    //databse reference
+    private DatabaseReference RootRefDB;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,9 @@ public class PhoneVerifiationActivity extends AppCompatActivity {
 
         //initializing objects
         mAuth = FirebaseAuth.getInstance();
+
+        //firebase database
+        RootRefDB = FirebaseDatabase.getInstance().getReference();
         editTextCode = findViewById(R.id.editTextCode);
 
 
@@ -132,6 +140,9 @@ public class PhoneVerifiationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             //verification successful we will start the main activity
+                            String currentuserID = mAuth.getCurrentUser().getUid();
+
+                            RootRefDB.child("Users").child(currentuserID).setValue("");
                             sendUsertoMainActivity();
 
                         } else {

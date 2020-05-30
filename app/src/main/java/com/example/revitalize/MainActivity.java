@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         if(item.getItemId() == R.id.main_settings_option){
-
+            sendUsertoSettingsActivity();
         }
         if(item.getItemId() == R.id.main_find_friends_option){
 
@@ -76,4 +76,12 @@ public class MainActivity extends AppCompatActivity {
 
         return true;
     }
+
+
+    //sends the user to the settings activity where it confirms the number
+    private void sendUsertoSettingsActivity(){
+        Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+        startActivity(settingsIntent);
+    }
+
 }
