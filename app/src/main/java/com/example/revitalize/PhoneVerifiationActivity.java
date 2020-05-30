@@ -131,10 +131,8 @@ public class PhoneVerifiationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            //verification successful we will start the profile activity
-                            Intent intent = new Intent(PhoneVerifiationActivity.this, MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
+                            //verification successful we will start the main activity
+                            sendUsertoMainActivity();
 
                         } else {
 
@@ -157,5 +155,13 @@ public class PhoneVerifiationActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void sendUsertoMainActivity(){
+        //sends the user to the verification activity where it confirms the number
+        Intent verificationIntent = new Intent(PhoneVerifiationActivity.this, MainActivity.class);
+        verificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(verificationIntent);
+        finish();
     }
 }

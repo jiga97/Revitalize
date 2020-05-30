@@ -22,6 +22,7 @@ import static android.Manifest.permission.READ_SMS;
 public class LoginActivity extends AppCompatActivity {
 
     private EditText phonenumber;
+    private String mobile;
 
     //firebase auth object
     private FirebaseAuth mAuth;
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String mobile = phonenumber.getText().toString();
+                mobile = phonenumber.getText().toString();
 
                 if(mobile.isEmpty()){
                     phonenumber.setError("Enter a valid mobile");
@@ -60,9 +61,8 @@ public class LoginActivity extends AppCompatActivity {
                     return;
                 }
 
-                Intent intent = new Intent(LoginActivity.this, PhoneVerifiationActivity.class);
-                intent.putExtra("mobile", mobile);
-                startActivity(intent);
+                //sends user to the verification activity
+                sendUsertoVerificationActivity();
 
             }
         });
@@ -88,5 +88,14 @@ public class LoginActivity extends AppCompatActivity {
                 phonenumber.setText(mPhoneNumber);
                 break;
         }
+    }
+
+    private void sendUsertoVerificationActivity(){
+        //sends the user to the verification activity where it confirms the number
+        Intent verificationIntent = new Intent(LoginActivity.this, PhoneVerifiationActivity.class);
+        verificationIntent.putExtra("mobile", mobile);
+        verificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(verificationIntent);
+        finish();
     }
 }
