@@ -88,11 +88,13 @@ public class MainActivity extends AppCompatActivity {
             sendUsertoSettingsActivity();
         }
         if(item.getItemId() == R.id.main_find_friends_option){
-
+            sendUsertoFindFriendsActivity();
         }
 
         return true;
     }
+
+
 
     //creating a new group popup box
     private void RequestNewGroup() {
@@ -148,4 +150,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(settingsIntent);
     }
 
+    private void sendUsertoFindFriendsActivity()
+    {
+        Intent findFriendsIntent = new Intent(MainActivity.this, FindFriendsActivity.class);
+        startActivity(findFriendsIntent);
+    }
 }
