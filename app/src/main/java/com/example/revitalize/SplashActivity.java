@@ -48,7 +48,6 @@ public class SplashActivity extends AppCompatActivity {
             //user is signed in
             VerifyUserExistance();
 
-            sendUsertoMainActivity();
         } else {
             // No user is signed in
             sendUsertoLoginActivity();
@@ -60,12 +59,18 @@ public class SplashActivity extends AppCompatActivity {
         String currentUserID = mAuth.getCurrentUser().getUid();
         RootRefDB.child(currentUserID).addValueEventListener(new ValueEventListener() {
             @Override
+            //this does not work
+            //datasnapshot returns null and keeps sending to settings screen but it does get data
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if((dataSnapshot.child("name").exists())){
-                    Toast.makeText(SplashActivity.this, "Welcome", Toast.LENGTH_SHORT);
+                if((dataSnapshot.child("name").exists()))
+                {
+                    Toast.makeText(SplashActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
+                    sendUsertoMainActivity();
                 }
-                else{
-                    sendUsertoSettingsActivity();
+                else
+                {
+                   // sendUsertoSettingsActivity(); doesnt work so commented it out
+                    sendUsertoMainActivity();
                 }
             }
 
@@ -74,6 +79,8 @@ public class SplashActivity extends AppCompatActivity {
 
             }
         });
+
+
 
 
     }

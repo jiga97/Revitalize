@@ -5,13 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".GroupsFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <ListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Groups"
-        android:layout_centerInParent="true"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
-
+        android:background="#9C27B0" />
 </RelativeLayout>
