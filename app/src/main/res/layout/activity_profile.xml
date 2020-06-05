@@ -59,5 +59,19 @@
         android:text="Send Message"
         android:textAllCaps="false"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/decline_message_request_button"
+        android:layout_below="@+id/send_message_request_button"
+        android:layout_marginLeft="65dp"
+        android:layout_marginRight="65dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/common_google_signin_btn_text_light"
+        android:textStyle="bold"
+        android:text="Cancel Chat Request"
+        android:visibility="invisible"
+        android:textAllCaps="false"/>
+
 
 </RelativeLayout>
