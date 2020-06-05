@@ -52,4 +52,7 @@ dependencies {
 
     //picasso library
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // FirebaseUI for Firebase Realtime Database
+    implementation 'com.firebaseui:firebase-ui-database:6.2.1'
 }
