@@ -3,6 +3,7 @@ package com.example.revitalize;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -46,6 +47,7 @@ public class SettingsActivity extends AppCompatActivity {
     private StorageReference userProfileImageRefDB;
     private ProgressDialog loadingBar;
 
+    private Toolbar settingsToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -159,11 +161,11 @@ public class SettingsActivity extends AppCompatActivity {
             Toast.makeText(this, "Please Enter a status", Toast.LENGTH_SHORT).show();
         }
         else{
-            HashMap<String, String> profileMap = new HashMap<>();
+            HashMap<String, Object> profileMap = new HashMap<>();
                 profileMap.put("uid", currentUserID);
                 profileMap.put("name", setUserName);
                 profileMap.put("status", setUserStatus);
-                RootRefDB.child("Users").child(currentUserID).setValue(profileMap)
+                RootRefDB.child("Users").child(currentUserID).updateChildren(profileMap)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
@@ -185,6 +187,12 @@ public class SettingsActivity extends AppCompatActivity {
         userStatus = (EditText) findViewById(R.id.set_profile_status);
         userProfileImage = (CircleImageView) findViewById(R.id.set_profile_image);
         loadingBar = new ProgressDialog(this);
+
+        settingsToolbar = (Toolbar)findViewById(R.id.settings_toolbar);
+        setSupportActionBar(settingsToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setTitle("Settings");
 
     }
 
