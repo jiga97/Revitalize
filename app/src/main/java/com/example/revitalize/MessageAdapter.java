@@ -96,9 +96,12 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
         if (fromMessageType.equals("text")){
             holder.recieverMessageText.setVisibility(View.INVISIBLE);
             holder.recieverProfileImage.setVisibility(View.INVISIBLE);
+            holder.senderMessageText.setVisibility(View.INVISIBLE);
 
             if(fromUserID.equals(messageSenderID))
             {
+
+                holder.senderMessageText.setVisibility(View.VISIBLE);
                 holder.senderMessageText.setBackgroundResource(R.drawable.sender_messages_layout);
 
                 //change text color
@@ -109,7 +112,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
             else
             {
 
-                holder.senderMessageText.setVisibility(View.INVISIBLE);
+
 
 
                 holder.recieverMessageText.setVisibility(View.VISIBLE);

@@ -21,6 +21,8 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,7 +30,7 @@ public class PhoneVerifiationActivity extends AppCompatActivity {
 
     //These are the objects needed
     //It is the verification id that will be sent to the user
-    private String mVerificationId;
+    private String mVerificationId, deviceToken;
 
     //The edittext to input the code
     private EditText editTextCode;
@@ -37,7 +39,7 @@ public class PhoneVerifiationActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
 
     //databse reference
-    private DatabaseReference RootRefDB;
+    private DatabaseReference RootRefDB, UsersRefDB;
 
 
     @Override
@@ -50,6 +52,9 @@ public class PhoneVerifiationActivity extends AppCompatActivity {
 
         //firebase database
         RootRefDB = FirebaseDatabase.getInstance().getReference();
+        UsersRefDB = FirebaseDatabase.getInstance().getReference().child("Users");
+
+
         editTextCode = findViewById(R.id.editTextCode);
 
 
@@ -142,8 +147,36 @@ public class PhoneVerifiationActivity extends AppCompatActivity {
                             //verification successful we will start the main activity
                             String currentuserID = mAuth.getCurrentUser().getUid();
 
-                            RootRefDB.child("Users").child(currentuserID).setValue("");
-                            sendUsertoMainActivity();
+                            //get device  token
+                            FirebaseInstanceId.getInstance().getInstanceId()
+                                    .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<InstanceIdResult> task) {
+
+                                            // Get new Instance ID token
+                                            deviceToken = task.getResult().getToken();
+                                        }
+                                    });
+
+                            //RootRefDB.child("Users").child(currentuserID).setValue("");
+
+
+                            UsersRefDB.child(currentuserID).child("device_token")
+                                    .setValue(deviceToken)
+                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            if (task.isSuccessful())
+                                            {
+                                                sendUsertoMainActivity();
+                                            }
+                                        }
+                                    });
+
+
+
+
+
 
                         } else {
 
@@ -175,4 +208,6 @@ public class PhoneVerifiationActivity extends AppCompatActivity {
         startActivity(verificationIntent);
         finish();
     }
+
+
 }
