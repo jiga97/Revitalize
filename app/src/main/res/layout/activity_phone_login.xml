@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/phone_login_animation_list"
+    android:id="@+id/phone_login_activity_layout"
+    tools:context=".PhoneLoginActivity">
+
+    <com.hbb20.CountryCodePicker
+        android:id="@+id/country_code_picker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:ccp_textSize="16sp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        app:ccp_autoDetectCountry="true"
+        app:ccp_showNameCode="true"
+        android:background="@drawable/rounded_edittext"
+        android:layout_marginStart="20dp" />
+
+    <EditText
+
+        android:id="@+id/phone_number_input"
+        android:layout_toEndOf="@id/country_code_picker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="100dp"
+        android:padding="8dp"
+        android:hint="Phone Number"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:background="@drawable/rounded_edittext"
+        android:textStyle="bold"
+        android:inputType="number"
+        android:gravity="center_horizontal"
+        android:importantForAutofill="no"
+        android:layout_toRightOf="@id/country_code_picker"
+        />
+
+
+
+    <EditText
+
+        android:id="@+id/verification_code_input"
+        android:layout_below="@id/phone_number_input"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"
+        android:hint="Enter Verification Code"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:importantForAutofill="no"
+        android:inputType="number"
+        android:visibility="invisible"
+        android:background="@drawable/rounded_edittext"
+        android:gravity="center_horizontal" />
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/send_verification"
+        android:id="@+id/send_verification_code_btn"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/phone_login_activity_send_verification_button"
+        android:layout_below="@id/verification_code_input"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_horizontal"
+        android:layout_alignParentRight="true"
+
+        />
+
+
+    <ImageButton
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:id="@+id/verify_btn"
+        android:src="@drawable/verify_user"
+        android:scaleType="fitCenter"
+        android:layout_marginStart="17dp"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/phone_login_activity_verification_button"
+        android:layout_below="@id/verification_code_input"
+        android:layout_alignParentEnd="true"
+        android:gravity="center_horizontal"
+        android:layout_alignParentRight="true"
+        android:visibility="invisible"/>
+
+
+
+</RelativeLayout>

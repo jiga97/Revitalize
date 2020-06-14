@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.PhoneAuthProvider;
 
 import static android.Manifest.permission.READ_PHONE_NUMBERS;
 import static android.Manifest.permission.READ_PHONE_STATE;
@@ -98,4 +99,6 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(verificationIntent);
         finish();
     }
+
+
 }

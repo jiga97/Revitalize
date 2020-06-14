@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -18,95 +20,58 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.HashMap;
+
 public class SplashActivity extends AppCompatActivity {
 
-    //firebase auth object
     private FirebaseAuth mAuth;
-    private FirebaseUser mUser;
-    private DatabaseReference RootRefDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        int secondsDelayed = 5;
+        mAuth = FirebaseAuth.getInstance();
+
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        int secondsDelayed = 2;
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                checkuser();
+                FirebaseUser currentUser = mAuth.getCurrentUser();
+                if (currentUser == null)
+                {
+                    sendUsertoLoginActivity();
+
+                } else if(currentUser != null)
+                {
+                    sendUsertoMainActivity();
+                }
+
             }
         }, secondsDelayed * 1000);
-
-
-        mAuth = FirebaseAuth.getInstance();
-        RootRefDB = FirebaseDatabase.getInstance().getReference();
-    }
-
-    private void checkuser(){
-         mUser = FirebaseAuth.getInstance().getCurrentUser();
-        if (mUser != null) {
-            //user is signed in
-            VerifyUserExistance();
-
-        } else {
-            // No user is signed in
-            sendUsertoLoginActivity();
-        }
-    }
-
-    //checks if user exists
-    private void VerifyUserExistance() {
-        String currentUserID = mAuth.getCurrentUser().getUid();
-        RootRefDB.child(currentUserID).addValueEventListener(new ValueEventListener() {
-            @Override
-            //this does not work
-            //datasnapshot returns null and keeps sending to settings screen but it does get data
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if((dataSnapshot.child("name").exists()))
-                {
-                    Toast.makeText(SplashActivity.this, "Welcome", Toast.LENGTH_SHORT).show();
-                    sendUsertoMainActivity();
-                }
-                else
-                {
-                   // sendUsertoSettingsActivity(); doesnt work so commented it out
-                    sendUsertoMainActivity();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
     }
 
     //sends the user to the verification activity where it confirms the number
     private void sendUsertoLoginActivity(){
-        Intent loginIntent = new Intent(SplashActivity.this, LoginActivity.class);
+        Intent loginIntent = new Intent(SplashActivity.this, PhoneLoginActivity.class);
         //prevents user from using back button
         loginIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(loginIntent);
         finish();
     }
 
-    //sends the user to the verification activity where it confirms the number
+    //sends the user to the main activity where it confirms the number
     private void sendUsertoMainActivity(){
         Intent mainIntent = new Intent(SplashActivity.this, MainActivity.class);
-        mainIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(mainIntent);
-        finish();
-    }
-
-    //sends the user to the settings activity where it confirms the number
-    private void sendUsertoSettingsActivity(){
-        Intent settingsIntent = new Intent(SplashActivity.this, SettingsActivity.class);
-        settingsIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(settingsIntent);
         finish();
     }
 }

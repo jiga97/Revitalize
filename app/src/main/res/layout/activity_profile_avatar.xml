@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/profile_avatar_activity_layout"
+    android:background="@drawable/profile_avatar_animation_list"
+    tools:context=".ProfileAvatarActivity">
+
+    <RelativeLayout
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:layout_centerHorizontal="true">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_avatar_activity"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/profile_image"
+        app:civ_border_width="1dp"
+        />
+
+        <ImageView
+            android:id="@+id/profile_avatar_activity1"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/update_picture"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:scaleType="fitCenter"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/profile_avatar_update_picture_image_button"
+            android:layout_marginRight="10dp" />
+
+
+    </RelativeLayout>
+
+
+    <ImageButton
+        android:id="@+id/save_btn"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/update"
+        android:padding="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="25dp"
+        android:scaleType="centerInside"
+        android:background="@drawable/profile_avatar_activity_save_button"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="15dp" />
+
+</RelativeLayout>

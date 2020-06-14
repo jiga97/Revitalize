@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/profile_name_activity_layout"
+    android:background="@drawable/profile_name_animation_list"
+    tools:context=".ProfileNameActivity">
+    
+    
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/revitalize_logo_icon"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/logo_icon"
+        android:layout_marginTop="25dp"
+
+        />
+
+
+
+    <EditText
+        android:layout_below="@id/logo_icon"
+        android:id="@+id/username_input"
+        android:layout_width="260dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="50dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="50dp"
+        android:padding="8dp"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textAlignment="textStart"
+        android:background="@drawable/rounded_edittext"
+        android:textStyle="bold"
+        android:importantForAutofill="no"
+        android:hint="Username"
+        android:gravity="start" />
+
+
+    <EditText
+
+        android:id="@+id/userstatus_input"
+        android:layout_width="260dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="20dp"
+        android:padding="8dp"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:textAlignment="textStart"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/rounded_edittext"
+        android:textStyle="bold"
+        android:hint="Status"
+        android:importantForAutofill="no"
+        android:layout_below="@id/username_input"
+        android:gravity="start" />
+    
+    <ImageButton
+        android:id="@+id/next_btn"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:src="@drawable/right_arrow"
+        android:padding="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="25dp"
+        android:scaleType="centerInside"
+        android:background="@drawable/profile_username_activity_button"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="15dp" />
+
+
+
+
+</RelativeLayout>

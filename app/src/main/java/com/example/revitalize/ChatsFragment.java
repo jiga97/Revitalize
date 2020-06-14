@@ -93,12 +93,36 @@ public class ChatsFragment extends Fragment {
                                         Picasso.get().load(retrieveImage[0]).placeholder(R.drawable.profile_image).into(holder.profileImage);
                                     }
 
-
                                     final String retrieveName = dataSnapshot.child("name").getValue().toString();
                                     final String retrieveUserStatus = dataSnapshot.child("status").getValue().toString();
 
                                     holder.userName.setText(retrieveName);
-                                    holder.userStatus.setText("Last seen: " + "\n" + "Date " + "Time");
+
+
+
+                                    /////get user online status
+                                    if (dataSnapshot.child("userState").hasChild("state"))
+                                    {
+                                        String state = dataSnapshot.child("userState").child("state").getValue().toString();
+                                        String date = dataSnapshot.child("userState").child("date").getValue().toString();
+                                        String time = dataSnapshot.child("userState").child("time").getValue().toString();
+
+                                        if(state.equals("online"))
+                                        {
+                                            holder.userStatus.setText("online");
+                                        }
+                                        else if (state.equals("offline"))
+                                        {
+                                            holder.userStatus.setText("Last seen: " + date + " " + time);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        //if user state is not available then it just displays offline
+                                        holder.userStatus.setText("offline");
+                                    }
+
+
 
 
                                     //gets the contact selected
