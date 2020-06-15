@@ -19,6 +19,7 @@
         app:ccp_autoDetectCountry="true"
         app:ccp_showNameCode="true"
         android:background="@drawable/rounded_edittext"
+        app:ccpDialog_backgroundColor="@android:color/white"
         android:layout_marginStart="20dp" />
 
     <EditText

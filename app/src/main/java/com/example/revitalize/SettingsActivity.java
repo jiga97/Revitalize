@@ -43,8 +43,8 @@ public class SettingsActivity extends AppCompatActivity {
     private String currentUserID;
     private FirebaseAuth mAuth;
     private DatabaseReference RootRefDB;
-    private static final int GalleryPhotoSelection = 1;
     private StorageReference userProfileImageRefDB;
+    private static final int GalleryPhotoSelection = 1;
     private ProgressDialog loadingBar;
 
     private Toolbar settingsToolbar;

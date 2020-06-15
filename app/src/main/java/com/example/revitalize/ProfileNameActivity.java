@@ -64,7 +64,6 @@ public class ProfileNameActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 UpdateSettings();
-                FirebaseAuth.getInstance().signOut();
             }
         });
     }
@@ -90,7 +89,7 @@ public class ProfileNameActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if(task.isSuccessful()){
-                                sendUsertoMainActivity();
+                                sendUsertoAvatarActivity();
                                 Toast.makeText(ProfileNameActivity.this, "Saved", Toast.LENGTH_SHORT).show();
                             }
                             else{
@@ -101,11 +100,11 @@ public class ProfileNameActivity extends AppCompatActivity {
         }
     }
 
-    private void sendUsertoMainActivity(){
+    private void sendUsertoAvatarActivity(){
         //sends the user to the verification activity where it confirms the number
-        Intent verificationIntent = new Intent(ProfileNameActivity.this, MainActivity.class);
-        verificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(verificationIntent);
+        Intent Avatarintent = new Intent(ProfileNameActivity.this, ProfileAvatarActivity.class);
+        Avatarintent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(Avatarintent);
         finish();
     }
 }
